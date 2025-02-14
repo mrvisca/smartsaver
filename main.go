@@ -1,6 +1,7 @@
 package main
 
 import (
+	"smartsaver/routes"
 	"smartsaver/seeders"
 	"smartsaver/settings"
 )
@@ -13,6 +14,6 @@ func main() {
 	seeders.RoleSeed(nil)
 	seeders.UserSeed(nil)
 
-	// // Panggil fungsi route webapp
-	// routes.WebAppRoute()
+	// Panggil fungsi route webapp
+	routes.WebAppRoute()
 }
