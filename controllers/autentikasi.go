@@ -18,7 +18,9 @@ func FillResRegister(moduser models.User) models.ResRegister {
 		RoleId:     moduser.ID,
 		Name:       moduser.Name,
 		Email:      moduser.Email,
+		Jenkel:     moduser.Jenkel,
 		Phone:      moduser.Phone,
+		Nik:        moduser.Nik,
 		Kota:       moduser.Kota,
 		Provinsi:   moduser.Provinsi,
 		Negara:     moduser.Negara,
@@ -73,6 +75,7 @@ func RegisterAkun(c *gin.Context) {
 	email := c.PostForm("email")
 	pass := c.PostForm("password")
 	phone := c.PostForm("phone")
+	jenkel := c.PostForm("jenkel")
 
 	// variabel model user
 	var usr models.User
@@ -97,6 +100,7 @@ func RegisterAkun(c *gin.Context) {
 		Name:       name,
 		Email:      email,
 		Password:   pw,
+		Jenkel:     jenkel,
 		Phone:      phone,
 		Kode:       helpers.RandomString(6),
 		JoinDate:   join,

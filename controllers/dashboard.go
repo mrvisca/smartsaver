@@ -35,6 +35,7 @@ func FillProfile(usr models.User) models.ProfilePengguna {
 		RoleName:   usr.Role.Name,
 		Name:       usr.Name,
 		Email:      usr.Email,
+		Jenkel:     usr.Jenkel,
 		Phone:      usr.Phone,
 		Kota:       usr.Kota,
 		Provinsi:   usr.Provinsi,

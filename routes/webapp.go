@@ -42,6 +42,9 @@ func WebAppRoute() {
 	router.GET("/halaman-aplikasi/dashboard", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "Dashboard.tmpl", nil) // Render template Dashboard.tmpl
 	})
+	router.GET("/halaman-aplikasi/profile-pengguna", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "Profile.tmpl", nil) // Render template Dashboard.tmpl
+	})
 
 	// Route API
 	v1 := router.Group("api/v1/")

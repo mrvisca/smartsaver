@@ -55,7 +55,7 @@ jQuery( document ).ready(function() {
 
     jQuery(".btn-register").click(function() {
         // Redirect ke halaman pendaftaran
-        window.location.href = "http://localhost:8080/";
+        window.location.href = "http://localhost:8080/halaman-autentikasi/pendaftaran-akun";
     })
 
     jQuery('.btn-login').click(function() {
@@ -88,25 +88,6 @@ jQuery( document ).ready(function() {
                         }
 
                         document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
-                    }
-
-                    // Fungsi untuk mendapatkan nilai cookie
-                    function getCookie(name) {
-                        var cookieName = name + "=";
-                        var decodedCookie = decodeURIComponent(document.cookie);
-                        var cookieArray = decodedCookie.split(';');
-
-                        for (var i = 0; i < cookieArray.length; i++) {
-                            var cookie = cookieArray[i];
-                            while (cookie.charAt(0) === ' ') {
-                                cookie = cookie.substring(1);
-                            }
-                            if (cookie.indexOf(cookieName) === 0) {
-                                return cookie.substring(cookieName.length, cookie.length);
-                            }
-                        }
-
-                        return null;
                     }
 
                     // Simpan token ke cookie

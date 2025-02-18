@@ -11,7 +11,9 @@ type User struct {
 	Name       string `gorm:"type:varchar(200)"`
 	Email      string `gorm:"type:varchar(200);unique;not null"`
 	Password   string `gorm:"type:varchar(250)"`
+	Jenkel     string `gorm:"type:varchar(100);not null"`
 	Phone      string `gorm:"type:varchar(25)"`
+	Nik        string `gorm:"type:varchar(50);unique"`
 	Kota       string `gorm:"type:varchar(150)"`
 	Provinsi   string `gorm:"type:varchar(150)"`
 	Negara     string `gorm:"type:varchar(150)"`
@@ -28,7 +30,9 @@ type ResRegister struct {
 	RoleId     uint   `json:"role_id"`
 	Name       string `json:"name"`
 	Email      string `json:"email"`
+	Jenkel     string `json:"jenkel"`
 	Phone      string `json:"phone"`
+	Nik        string `json:"nik"`
 	Kota       string `json:"kota"`
 	Provinsi   string `json:"provinsi"`
 	Negara     string `json:"negara"`
@@ -46,7 +50,9 @@ type ProfilePengguna struct {
 	RoleName   string `json:"role_name"`
 	Name       string `json:"name"`
 	Email      string `json:"email"`
+	Jenkel     string `json:"jenkel"`
 	Phone      string `json:"phone"`
+	Nik        string `json:"nik"`
 	Kota       string `json:"kota"`
 	Provinsi   string `json:"provinsi"`
 	Negara     string `json:"negara"`

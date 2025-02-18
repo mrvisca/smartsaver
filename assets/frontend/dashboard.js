@@ -59,30 +59,54 @@ jQuery( document ).ready(function() {
         }).then(response => response.json()).then(hasil => {
             jQuery('.nama-user').text(hasil.data.name)
             jQuery('.role-user').text(hasil.data.role_name)
+
+            // Definisikan data ke variabel
+            var kota = hasil.data.kota
+            var provinsi = hasil.data.provinsi
+            var negara = hasil.data.negara
+
+            if (kota == "" && provinsi == "" && negara == "")
+            {
+                // Open Modal untuk melengkapi data
+                const el = document.querySelector("#static-backdrop-modal-preview");
+                const modal = tailwind.Modal.getOrCreateInstance(el);
+                modal.show();
+            }
         }).catch(error => {
             console.log(error);
             window.location.href = "http://localhost:8080/";
         });
 
+        jQuery('.btn-profile').click(function() {
+            // Redirect kehalaman profile
+            window.location.href = "http://localhost:8080/halaman-aplikasi/profile-pengguna";
+        })
+
         jQuery('.btn-logout').click(function() {
             var formData = new FormData();
             
             jQuery.ajax({
-                url: 'http://localhost:8080/api/v1/main-app/logout', // Sesuaikan dengan URL endpoint logout di server Anda
+                url: 'http://localhost:8080/api/v1/main-app/dashboard/logout', // Sesuaikan dengan URL endpoint logout di server Anda
                 type: 'POST',
                 data: formData,
                 processData: false,
                 contentType: false,
                 success: function(response) {
                     if (response.status == 'Sukses') {
-                        // Fungsi untuk menghapus cookie
-                        function deleteCookie(name) {
-                            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                        // Fungsi untuk mengatur cookie
+                        function setCookie(name, value, days) {
+                            var expires = "";
+
+                            if (days) {
+                                var date = new Date();
+                                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                                expires = "; expires=" + date.toUTCString();
+                            }
+
+                            document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
                         }
-                        
-                        // Hapus token dari cookie dan localStorage
-                        deleteCookie('token');
-                        localStorage.removeItem('token');
+
+                        setCookie('token', "Hello World", 14); // Simpan cookie selama 7 hari
                         
                         // Tampilkan notifikasi toast sukses
                         jQuery('.pesan-sukses').text(response.message);
