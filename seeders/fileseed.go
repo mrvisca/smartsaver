@@ -84,8 +84,8 @@ func UserSeed(c *gin.Context) {
 		// Struct buat data pengguna
 		simPengguna := models.User{
 			RoleId:     2,
-			Name:       "Bima Sakti Putra",
-			Email:      "bimasaktiputra95@gmail.com",
+			Name:       "Dodo Sapi",
+			Email:      "ggsblackwolf@gmail.com",
 			Password:   pass1,
 			Phone:      "6285814253237",
 			Kota:       "Jakarta",

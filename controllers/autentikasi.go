@@ -40,7 +40,7 @@ func CheckLogin(c *gin.Context) {
 	var usr models.User
 
 	// Kondisi bila data by email tidak ditemukan
-	if errors.Is(settings.DB.Where("email LIKE ? AND is_active", "%"+email+"%", true).First(&usr).Error, gorm.ErrRecordNotFound) {
+	if errors.Is(settings.DB.Where("email LIKE ? AND is_active = ?", "%"+email+"%", true).First(&usr).Error, gorm.ErrRecordNotFound) {
 		helpers.ElorResponse(c, "Data pengguna tidak ditemukan dalam sistem kami!")
 		c.Abort()
 		return
@@ -73,13 +73,8 @@ func RegisterAkun(c *gin.Context) {
 	email := c.PostForm("email")
 	pass := c.PostForm("password")
 	phone := c.PostForm("phone")
-	kota := c.PostForm("kota")
-	provinsi := c.PostForm("provinsi")
-	negara := c.PostForm("negara")
-	statusm := c.PostForm("statusm")
-	pekerjaan := c.PostForm("pekerjaan")
 
-	// Variabel model user
+	// variabel model user
 	var usr models.User
 
 	// Kondisi pencegahan duplikasi data berdasarkan nama dan email
@@ -89,32 +84,27 @@ func RegisterAkun(c *gin.Context) {
 		return
 	}
 
-	// Enkripsi password
+	// Enkripsi Password
 	pw, _ := helpers.HashPassword(pass)
 
 	// Tanggal bergabung otomatis
 	sekarang := time.Now()
 	join := sekarang.Format("2006-01-02 15:04:05")
 
-	// Struct simpan data pengguna baru
+	// Simpan struct data penggun baru
 	simpan := models.User{
 		RoleId:     2,
 		Name:       name,
 		Email:      email,
 		Password:   pw,
 		Phone:      phone,
-		Kota:       kota,
-		Provinsi:   provinsi,
-		Negara:     negara,
-		Statusm:    statusm,
-		Pekerjaan:  pekerjaan,
 		Kode:       helpers.RandomString(6),
 		JoinDate:   join,
 		IsVerified: false,
 		IsActive:   true,
 	}
 
-	// Simpan struct data dalam database
+	// Simpan struct data ke database
 	settings.DB.Create(&simpan)
 
 	// Deklarasi variabel untuk kebutuhan email verifikasi akun baru pengguna
@@ -152,7 +142,7 @@ func VerifikasiAkun(c *gin.Context) {
 	}
 
 	// Kondisi bila akun telah terverifikasi sebelumnya
-	if !usr.IsVerified {
+	if usr.IsVerified {
 		helpers.ElorResponse(c, "Akun sudah diverifikasi sebelumnya!")
 		c.Abort()
 		return

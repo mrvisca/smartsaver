@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"smartsaver/controllers"
+	"smartsaver/middleware"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -35,10 +36,12 @@ func WebAppRoute() {
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "Login.tmpl", nil) // Render template Login.tmpl
 	})
-	// // Route Website
-	// router.GET("/aplikasi/dashboard", func(c *gin.Context) {
-	// 	c.HTML(http.StatusOK, "Dashboard.tmpl", nil) // Render template Login.tmpl
-	// })
+	router.GET("/halaman-autentikasi/pendaftaran-akun", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "Register.tmpl", nil) // Render template Register.tmpl
+	})
+	router.GET("/halaman-aplikasi/dashboard", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "Dashboard.tmpl", nil) // Render template Dashboard.tmpl
+	})
 
 	// Route API
 	v1 := router.Group("api/v1/")
@@ -49,6 +52,15 @@ func WebAppRoute() {
 			oth.POST("/login", controllers.CheckLogin)
 			oth.POST("/register", controllers.RegisterAkun)
 			oth.GET("/verifikasi/:kode", controllers.VerifikasiAkun)
+		}
+
+		apps := v1.Group("/main-app/")
+		{
+			dashApps := apps.Group("/dashboard/")
+			{
+				dashApps.GET("/check-token", middleware.IsAuth(), controllers.CheckToken)
+				dashApps.POST("/logout", controllers.Logout)
+			}
 		}
 	}
 

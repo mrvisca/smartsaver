@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en" class="theme-3 light">
     <!-- BEGIN: Head -->
     <head>
         <meta charset="utf-8">
@@ -1434,7 +1434,7 @@
                                 </a>
                                 <a href="" class="flex items-center mt-2">
                                     <div class="w-8 h-8 image-fit">
-                                        <img alt="Midone - HTML Admin Template" class="rounded-full" src=/assets/images/preview-7.jpg">
+                                        <img alt="Midone - HTML Admin Template" class="rounded-full" src="/assets/images/preview-7.jpg">
                                     </div>
                                     <div class="ml-3">Dell XPS 13</div>
                                     <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">PC &amp; Laptop</div>
@@ -1540,8 +1540,8 @@
                         <div class="dropdown-menu w-56">
                             <ul class="dropdown-content bg-primary text-white">
                                 <li class="p-2">
-                                    <div class="font-medium">Keanu Reeves</div>
-                                    <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">Backend Engineer</div>
+                                    <div class="font-medium nama-user"></div>
+                                    <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500 role-user"></div>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider border-white/[0.08]">
@@ -2238,17 +2238,12 @@
             </div>
             <!-- END: Content -->
         </div>
-        <!-- BEGIN: Dark Mode Switcher-->
-        <div data-url="side-menu-dark-dashboard-overview-3.html" class="dark-mode-switcher cursor-pointer shadow-md fixed bottom-0 right-0 box dark:bg-dark-2 border rounded-full w-40 h-12 flex items-center justify-center z-50 mb-10 mr-10">
-            <div class="mr-4 text-gray-700 dark:text-gray-300">Dark Mode</div>
-            <div class="dark-mode-switcher__toggle border"></div>
-        </div>
-        <!-- END: Dark Mode Switcher-->
         
         <!-- BEGIN: JS Assets-->
-        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="/assets/dist/js/app.js"></script>
+        <script src="/assets/src/toastify.js"></script>
+        <script src="/assets/frontend/dashboard.js"></script>
         <!-- END: JS Assets-->
     </body>
 </html>

@@ -39,3 +39,21 @@ type ResRegister struct {
 	IsVerified bool   `json:"is_verified"`
 	IsActive   bool   `json:"is_active"`
 }
+
+type ProfilePengguna struct {
+	ID         uint   `json:"id"`
+	RoleId     uint   `json:"role_id"`
+	RoleName   string `json:"role_name"`
+	Name       string `json:"name"`
+	Email      string `json:"email"`
+	Phone      string `json:"phone"`
+	Kota       string `json:"kota"`
+	Provinsi   string `json:"provinsi"`
+	Negara     string `json:"negara"`
+	Statusm    string `json:"statusm"`
+	Pekerjaan  string `json:"pekerjaan"`
+	Kode       string `json:"kode"`
+	JoinDate   string `json:"join_date"`
+	IsVerified bool   `json:"is_verified"`
+	IsActive   bool   `json:"is_active"`
+}

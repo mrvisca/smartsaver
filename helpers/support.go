@@ -27,6 +27,7 @@ func CreateToken(user *models.User) string {
 		"negara":      user.Negara,
 		"statusm":     user.Statusm,
 		"pekerjaan":   user.Pekerjaan,
+		"kode":        user.Kode,
 		"join_date":   user.JoinDate,
 		"is_verified": user.IsVerified,
 		"is_active":   user.IsActive,
